@@ -12,5 +12,6 @@ mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/vireo
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/combined
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellbender/outs/$FASTQ
+mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/outs/$FASTQ
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/final_outs/$FASTQ
 done
