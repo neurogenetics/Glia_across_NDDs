@@ -15,7 +15,7 @@ for SAMPLE in $FASTQ_LIST; do
         # create the new filename in the CellRanger convention
         NEW_NAME="${SAMPLE}_S1_${LANE}_${READ_TYPE}_001.fastq.gz"
 
-        # Rename the file
+        # rename the file
         mv "$FILE" "$SAMPLE_DIR/$NEW_NAME"
     done
 done
