@@ -7,6 +7,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/cellran
     --module cellranger \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=36:00:00 \
+    --gres=lscratch:700 \
     --job-name swarm_cellranger_amppd
 # cellbender
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/cellbender_swarm.swarm \
