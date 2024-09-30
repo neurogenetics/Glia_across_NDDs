@@ -8,7 +8,6 @@ mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/scdblfinder
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/scds
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/demuxalot
-mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/demuxlet
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/vireo
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/demuxafy/samples_outs/$FASTQ/combined
 mkdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellbender/outs/$FASTQ
