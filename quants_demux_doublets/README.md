@@ -1,3 +1,7 @@
-1. Downloaded fastqs from AMP-PD GCloud
-2. Wrote pool/sample names to a list (write_fastq_list.R)
-3. Changed names of fastqs to match CellRanger naming convention (rename_fastqs.sh)
+# Methods: snRNA-seq data preprocessing
+Gene count matrices were obtained for each multiplexed pool by aligning reads to the GRCh38 human genome using CellRanger (v8.0.1, 10x Genomics), allowing mapping to intronic regions. We next performed ambient RNA detection and correction using CellBender (CITATION), using the default settings. This generated a gene count matrix with ambient RNA-corrected counts. We then utilized Demuxafy (CITATION), a singularity container wrapping softwares used for doublet detection and genotype-based demultiplexing. To demultiplex the pools, we used Demuxalot (CITATION) and Cellsnp-lite/Vireo (CITATION), and for general doublet detection, we used DoubletDetection (CITATION), scDblFinder (CITATION), and scds (CITATION). Note that demultiplexing and doublet detection were run on the CellRanger filtered feature matrices, not the CellBender corrected counts matrices. For unifying results from CellBender and the five Demuxafy softwares, we filtered cells using the following criteria:
+
+1. Any droplet which CellBender called as ambient (>50% chance) was removed. 
+2. Any cell which was identified as a doublet or unassigned by either Demuxalot or Cellsnp-lite/Vireo (i.e., heterogenic doublets) was removed.
+3. Any cell for which Demuxalot and Cellsnp-lite/Vireo did not agree on donor assignment was removed.
+4. Of the remaining cells, cells were retained which at least two of the three general doublet detection softwares (DoubletDetection, scDblFinder, and scds) called as singlets.
