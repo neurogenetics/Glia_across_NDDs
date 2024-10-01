@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# in order to run all samples at the same time, need to write outputs to temp dir then copy necessary outputs from lscratch to local 
+
 FASTQ=${1}
 REFERENCE=/data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/inputs/refdata-gex-GRCh38-2024-A
 OUTDIR=/data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/outs/$FASTQ
