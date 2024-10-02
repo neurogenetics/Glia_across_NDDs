@@ -66,6 +66,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/vireo_s
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxafy_combine_results.swarm \
     -g 3 \
     -t 1 \
+    -b 10 \
     --module singularity \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=00:10:00 \
@@ -74,6 +75,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxaf
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/filter_doublets.swarm \
     -g 50 \
     -t 1 \
+    -b 5 \
     --module R \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=2:00:00 \
