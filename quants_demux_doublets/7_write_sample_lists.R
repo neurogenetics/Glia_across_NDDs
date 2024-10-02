@@ -1,7 +1,3 @@
-# THIS IS JUST HOW I DID IT FOR THE AMP-PD SAMPLES!!!
-# NAMING CONVENTIONS WILL BE DIFFERENT!!!
-# Essentially what you need is a .txt file containing the names of the samples, exactly as they appear in the VCF, separated by a line
-
 fastq_list <- read.delim('/data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/all_fastqs.txt', header = F)
 fastqs <- fastq_list$V1
 
@@ -12,6 +8,11 @@ for (fastq in fastqs){
   new_txt_directory <- paste0('/data/ADRD/amp_pd/transcriptomics/fastq_processing/all_fastqs/', fastq, '/donor_list.txt')
   write.table(txt$sample_id, file = new_txt_directory, row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
+
+# !!! needed to manually edit 3 sets (for both duplicates): Set4, Set5, Set7a
+# they loaded 2 brain regions from the same donor in these pools, which can't be separated
+# cells from the dupe donor will be discarded
+# just edited the sample_id txt file to remove one of the copies of that donor
 
 for (fastq in fastqs){
   txt_directory <- paste0('/data/ADRD/amp_pd/transcriptomics/fastq_processing/all_fastqs/', fastq, '/', fastq, '.provided_sample_list.txt')
