@@ -52,7 +52,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxal
     -t 24 \
     --module singularity,bcftools,samtools \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
-    --time=24:00:00 \
+    --time=12:00:00 \
     --job-name swarm_demuxalot_amppd
 # vireo
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/vireo_swarm.swarm \
