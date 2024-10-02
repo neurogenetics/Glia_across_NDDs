@@ -25,7 +25,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/doublet
     -t 12 \
     --module singularity \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
-    --time=24:00:00 \
+    --time=4:00:00 \
     --job-name swarm_doubletdetection_amppd
 # scdblfinder
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/scdblfinder_swarm.swarm \
@@ -33,7 +33,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/scdblfi
     -t 12 \
     --module singularity \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
-    --time=24:00:00 \
+    --time=2:00:00 \
     --job-name swarm_scdblfinder_amppd
 # scds
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/scds_swarm.swarm \
@@ -41,7 +41,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/scds_sw
     -t 12 \
     --module singularity \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
-    --time=24:00:00 \
+    --time=2:00:00 \
     --job-name swarm_scds_amppd
 # demuxalot
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxalot_swarm.swarm \
