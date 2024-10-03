@@ -83,7 +83,7 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxaf
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/filter_doublets.swarm \
     -g 50 \
     -t 1 \
-    -b 3 \
+    -b 10 \
     --module R \
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=2:00:00 \
