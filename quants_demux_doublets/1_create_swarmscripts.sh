@@ -12,7 +12,7 @@ done
 ##########
 
 SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/cellbender_swarm.swarm
-FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/fastq_list_rerun_demuxalot.txt)
+FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/all_fastqs.txt)
 JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/8_run_cellbender_swarm.sh
 
 for FASTQ in ${FASTQ_LIST}
@@ -67,7 +67,7 @@ done
 ##########
 
 SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxalot_rerun_swarm.swarm
-FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/all_fastqs.txt)
+FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/fastq_list_rerun_demuxalot.txt)
 JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/demuxalot_rerun_highmem.sh
 
 for FASTQ in ${FASTQ_LIST}
