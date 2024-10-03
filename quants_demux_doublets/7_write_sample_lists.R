@@ -23,5 +23,5 @@ for (fastq in fastqs){
   write.table(txt$sample_id, file = new_txt_directory, row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
-# for those same pools, also manually removed one of the regions from the region txt
+# for those same pools, also manually removed one of the regions from the region txt so the script to combine won't fail
 # will manually remove all cells from those donors from those pools after combining everything
