@@ -9,7 +9,7 @@ for (fastq in fastqs){
   write.table(txt$sample_id, file = new_txt_directory, row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
 
-# !!! needed to manually edit 3 sets (for both duplicates): Set4, Set5, Set7a
+# !!! needed to manually edit 3 sets (for both duplicates): Set4, Set5, Set7a (both duplicates, so 6 total pools)
 # they loaded 2 brain regions from the same donor in these pools, which can't be separated
 # cells from the dupe donor will be discarded
 # just edited the sample_id txt file to remove one of the copies of that donor
@@ -22,3 +22,6 @@ for (fastq in fastqs){
   new_txt_directory <- paste0('/data/ADRD/amp_pd/transcriptomics/fastq_processing/all_fastqs/', fastq, '/donor_region_list.txt')
   write.table(txt$sample_id, file = new_txt_directory, row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
+
+# for those same pools, also manually removed one of the regions from the region txt
+# will manually remove all cells from those donors from those pools after combining everything
