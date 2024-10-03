@@ -66,6 +66,17 @@ done
 
 ##########
 
+SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxalot_rerun_swarm.swarm
+FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/all_fastqs.txt)
+JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/demuxalot_rerun_highmem.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
+
+##########
+
 SWARM_FILENAME=/data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/vireo_swarm.swarm
 FASTQ_LIST=$(cat /data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/all_fastqs.txt)
 JOB_SCRIPT=/data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/13_run_demuxafy_vireo_swarm.sh
