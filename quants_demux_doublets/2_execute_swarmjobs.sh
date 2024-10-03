@@ -54,6 +54,14 @@ swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxal
     --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
     --time=12:00:00 \
     --job-name swarm_demuxalot_amppd
+# demuxalot rerun 
+swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxalot_rerun_swarm.swarm \
+    -g 200 \
+    -t 24 \
+    --module singularity \
+    --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
+    --time=12:00:00 \
+    --job-name swarm_demuxalot_amppd
 # vireo
 swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/vireo_swarm.swarm \
     -g 20 \
