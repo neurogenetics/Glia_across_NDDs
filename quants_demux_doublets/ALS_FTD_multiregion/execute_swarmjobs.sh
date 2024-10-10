@@ -1,6 +1,6 @@
 # sratoolkit (prefetch + fasterq-dump)
 swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/prefetch_fasterq_dump_swarm.swarm \
-    -g 40 \
+    -g 20 \
     -t 10 \
     -b 20 \
     --module sratoolkit \
