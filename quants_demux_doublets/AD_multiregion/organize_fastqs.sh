@@ -1,4 +1,4 @@
-FASTQ_LIST=$(cat /data/ADRD/AD_multiregion/fastq_processing/AD_fastqs.txt)
+FASTQ_LIST=$(cat /data/ADRD/AD_multiregion/fastq_processing/cleaned_AD_fastqs.txt)
 
 for FASTQ in ${FASTQ_LIST}
 do
