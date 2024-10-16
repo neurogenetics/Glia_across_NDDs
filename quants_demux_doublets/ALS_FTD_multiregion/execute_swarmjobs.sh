@@ -13,7 +13,6 @@ swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/prefetch_fa
 swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/cellranger_swarm.swarm \
     -g 124 \
     -t 24 \
-    -b 3 \
     --module cellranger \
     --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
     --time=18:00:00 \
