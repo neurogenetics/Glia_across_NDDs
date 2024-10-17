@@ -30,3 +30,33 @@ swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/cellbender_
     --partition=gpu \
     --gres=gpu:k80:1 \
     --job-name swarm_cellbender_alsftd
+
+# doubletdetection
+swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/doubletdetection_swarm.swarm \
+    -g 50 \
+    -t 12 \
+    --module singularity \
+    --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
+    --time=4:00:00 \
+    -b 3 \
+    --job-name swarm_doubletdetection_alsftd
+
+# scdblfinder
+swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scdblfinder_swarm.swarm \
+    -g 50 \
+    -t 12 \
+    --module singularity \
+    --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
+    --time=2:00:00 \
+    -b 10 \
+    --job-name swarm_scdblfinder_alsftd
+
+# scds
+swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scds_swarm.swarm \
+    -g 50 \
+    -t 12 \
+    --module singularity \
+    --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
+    --time=2:00:00 \
+    -b 5\
+    --job-name swarm_scds_alsftd
