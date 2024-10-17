@@ -69,4 +69,4 @@ swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/demuxafy_co
     --module singularity \
     --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
     --time=00:10:00 \
-    --job-name swarm_combine_results_amppd
+    --job-name swarm_combine_results_alsftd
