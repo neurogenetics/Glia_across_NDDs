@@ -7,3 +7,4 @@
 5. Unzip barcodes.tsv.gz for Demuxafy (**gunzip_barcodes.sh**)
 6. Run CellBender (**run_cellbender_swarm.sh**)
 7. Run Demuxafy doublet detection packages (**run_demuxafy_doubletdetection_swarm.sh**, **run_demuxafy_scdblfinder_swarm.sh**, and **run_demuxafy_scds_swarm.sh**)
+8. Combine results from Demuxafy packages (**demuxafy_combine_results.sh**)
