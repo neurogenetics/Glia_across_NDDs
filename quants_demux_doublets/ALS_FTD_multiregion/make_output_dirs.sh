@@ -4,4 +4,5 @@ for FASTQ in ${FASTQ_LIST}
 do
 mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/all_fastqs/fastq/$FASTQ
 mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/cellranger/outs/$FASTQ
+mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/cellbender/outs/$FASTQ
 done
