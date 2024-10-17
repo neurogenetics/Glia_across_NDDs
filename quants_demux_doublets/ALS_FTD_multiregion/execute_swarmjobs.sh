@@ -60,3 +60,13 @@ swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scds_swarm.
     --time=2:00:00 \
     -b 5 \
     --job-name swarm_scds_alsftd
+
+# combine results
+swarm -f /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmscripts/demuxafy_combine_results.swarm \
+    -g 3 \
+    -t 1 \
+    -b 20 \
+    --module singularity \
+    --logdir /data/ADRD/amp_pd/transcriptomics/fastq_processing/swarmlogs \
+    --time=00:10:00 \
+    --job-name swarm_combine_results_amppd
