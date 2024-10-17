@@ -58,5 +58,5 @@ swarm -f /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scds_swarm.
     --module singularity \
     --logdir /data/ADRD/ALSFTD_multiregion/fastq_processing/swarmlogs \
     --time=2:00:00 \
-    -b 5\
+    -b 5 \
     --job-name swarm_scds_alsftd
