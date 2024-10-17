@@ -28,3 +28,36 @@ for FASTQ in ${FASTQ_LIST}
 do
 echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
 done
+
+##########
+
+SWARM_FILENAME=/data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/doubletdetection_swarm.swarm
+FASTQ_LIST=$(cat /data/ADRD/ALSFTD_multiregion/fastq_processing/cleaned_SRRs.txt)
+JOB_SCRIPT=/data/ADRD/ALSFTD_multiregion/fastq_processing/jobscripts/run_demuxafy_doubletdetection_swarm.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
+
+##########
+
+SWARM_FILENAME=/data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scdblfinder_swarm.swarm
+FASTQ_LIST=$(cat /data/ADRD/ALSFTD_multiregion/fastq_processing/cleaned_SRRs.txt)
+JOB_SCRIPT=/data/ADRD/ALSFTD_multiregion/fastq_processing/jobscripts/run_demuxafy_scdblfinder_swarm.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
+
+##########
+
+SWARM_FILENAME=/data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/scds_swarm.swarm
+FASTQ_LIST=$(cat /data/ADRD/ALSFTD_multiregion/fastq_processing/cleaned_SRRs.txt)
+JOB_SCRIPT=/data/ADRD/ALSFTD_multiregion/fastq_processing/jobscripts/run_demuxafy_scds_swarm.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
