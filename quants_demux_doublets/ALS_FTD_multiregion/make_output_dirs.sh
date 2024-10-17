@@ -9,4 +9,5 @@ mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/demuxafy/outs/$FASTQ
 mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/demuxafy/outs/$FASTQ/doubletdetection
 mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/demuxafy/outs/$FASTQ/scdblfinder
 mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/demuxafy/outs/$FASTQ/scds
+mkdir /data/ADRD/ALSFTD_multiregion/fastq_processing/demuxafy/outs/$FASTQ/combined
 done
