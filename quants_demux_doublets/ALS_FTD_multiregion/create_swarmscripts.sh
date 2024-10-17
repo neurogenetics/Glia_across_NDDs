@@ -61,3 +61,16 @@ for FASTQ in ${FASTQ_LIST}
 do
 echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
 done
+
+##########
+
+SWARM_FILENAME=/data/ADRD/ALSFTD_multiregion/fastq_processing/swarmscripts/demuxafy_combine_results.swarm
+FASTQ_LIST=$(cat /data/ADRD/ALSFTD_multiregion/fastq_processing/cleaned_SRRs.txt)
+JOB_SCRIPT=/data/ADRD/ALSFTD_multiregion/fastq_processing/jobscripts/demuxafy_combine_results.sh
+
+for FASTQ in ${FASTQ_LIST}
+do
+echo ${JOB_SCRIPT} ${FASTQ} >> ${SWARM_FILENAME}
+done
+
+##########
