@@ -8,3 +8,4 @@
 6. Run CellBender (**run_cellbender_swarm.sh**)
 7. Run Demuxafy doublet detection packages (**run_demuxafy_doubletdetection_swarm.sh**, **run_demuxafy_scdblfinder_swarm.sh**, and **run_demuxafy_scds_swarm.sh**)
 8. Combine results from Demuxafy packages (**demuxafy_combine_results.sh**)
+9. Filter doublets and make/save Seurat objects for each sample (**filter_doublets.R** and **filter_doublets.sh**)
