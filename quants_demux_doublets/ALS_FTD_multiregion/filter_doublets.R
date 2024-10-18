@@ -64,6 +64,23 @@ region <- meta$region
 sample <- substring(meta$sample, 1, 3)
 
 
+cellranger_seurat$sample <- sample
+cellbender_seurat$sample <- sample
+
+cellranger_seurat$region <- region
+cellbender_seurat$region <- region
+
+cellranger_seurat$sample_region <- paste0(cellranger_seurat$sample, "_", cellranger_seurat$region)
+cellbender_seurat$sample_region <- paste0(cellbender_seurat$sample, "_", cellbender_seurat$region)
+
+colnames(cellranger_seurat) <- paste0(colnames(cellranger_seurat), "_", cellranger_seurat$sample_region)
+colnames(cellbender_seurat) <- paste0(colnames(cellbender_seurat), "_", cellbender_seurat$sample_region)
+
+cellranger_seurat$barcode <- colnames(cellranger_seurat)
+cellbender_seurat$barcode <- colnames(cellbender_seurat)
+
+####################################
+
 cellranger_seurat_dir <- paste0("/data/ADRD/ALSFTD_multiregion/fastq_processing/final_outs/", fastq, "/", sample, "_", region, "_cellranger_seurat.rds")
 cellbender_seurat_dir <- paste0("/data/ADRD/ALSFTD_multiregion/fastq_processing/final_outs/", fastq, "/", sample, "_", region, "_cellbender_seurat.rds")
 
@@ -80,4 +97,3 @@ if (!all(colnames(cellranger_seurat) %in% colnames(cellbender_seurat)) ||
   saveRDS(cellranger_seurat, file = cellranger_seurat_dir)
   saveRDS(cellbender_seurat, file = cellbender_seurat_dir)
 }
-
