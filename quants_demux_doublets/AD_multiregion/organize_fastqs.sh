@@ -22,3 +22,8 @@ if [ ${#S_nums[@]} -gt 1 ]; then
   done
 fi
 done
+
+# write .txt with split fastq names
+output_file="split_fastqs.txt"
+for dir in all_fastqs/
+do
