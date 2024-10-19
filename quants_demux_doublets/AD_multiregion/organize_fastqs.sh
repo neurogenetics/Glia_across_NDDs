@@ -27,3 +27,6 @@ done
 output_file="split_fastqs.txt"
 for dir in all_fastqs/
 do
+base_dir=$(basename "$dir")
+echo "$base_dir" >> "$output_file"
+done
