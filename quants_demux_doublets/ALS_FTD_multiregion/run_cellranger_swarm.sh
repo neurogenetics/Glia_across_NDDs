@@ -4,7 +4,7 @@
 
 FASTQ=${1}
 REFERENCE=/data/ADRD/amp_pd/transcriptomics/fastq_processing/cellranger/inputs/refdata-gex-GRCh38-2024-A
-OUTDIR=/data/ADRD/ALSFTD_multiregion/fastq_processing/cellranger/outs/fastq/$FASTQ
+OUTDIR=/data/ADRD/ALSFTD_multiregion/fastq_processing/cellranger/outs/$FASTQ
 FASTQ_DIR=/data/ADRD/ALSFTD_multiregion/fastq_processing/all_fastqs/fastq/$FASTQ
 TMPDIR=/lscratch/$SLURM_JOB_ID
 
