@@ -12,7 +12,7 @@ swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/cellranger_swar
 swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/cellbender_swarm.swarm \
     -g 100 \
     -t 12 \
-    -b 2 \
+    -b 4 \
     --module cellbender \
     --logdir /data/ADRD/AD_multiregion/fastq_processing/swarmlogs \
     --time=12:00:00 \
