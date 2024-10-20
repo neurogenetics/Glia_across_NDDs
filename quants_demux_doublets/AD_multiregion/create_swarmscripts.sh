@@ -9,9 +9,9 @@ done
 
 ##########
 
-SWARM_FILENAME=/data/ADRD/AD_multiregion/fastq_processing/swarmscripts/cellranger_swarm.swarm
+SWARM_FILENAME=/data/ADRD/AD_multiregion/fastq_processing/swarmscripts/cellbender_swarm.swarm
 FASTQ_LIST=$(cat /data/ADRD/AD_multiregion/fastq_processing/round_1_fastqs.txt)
-JOB_SCRIPT=/data/ADRD/AD_multiregion/fastq_processing/jobscripts/run_cellranger_swarm.sh
+JOB_SCRIPT=/data/ADRD/AD_multiregion/fastq_processing/jobscripts/run_cellbender_swarm.sh
 
 for FASTQ in ${FASTQ_LIST}
 do
