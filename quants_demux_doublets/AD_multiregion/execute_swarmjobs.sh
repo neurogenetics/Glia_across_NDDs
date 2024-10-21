@@ -70,6 +70,7 @@ swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/filter_doublets
     --time=2:00:00 \
     --job-name swarm_filter_cells_ad \
     --gres=lscratch:5
+
 # combine results
 swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/demuxafy_combine_results.swarm \
     -g 3 \
