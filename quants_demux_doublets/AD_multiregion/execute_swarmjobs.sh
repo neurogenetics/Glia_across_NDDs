@@ -80,3 +80,14 @@ swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/demuxafy_combin
     --logdir /data/ADRD/AD_multiregion/fastq_processing/swarmlogs \
     --time=00:10:00 \
     --job-name swarm_combine_results_ad
+
+# filter doublets
+swarm -f /data/ADRD/AD_multiregion/fastq_processing/swarmscripts/filter_doublets.swarm \
+    -g 50 \
+    -t 1 \
+    -b 10 \
+    --module R \
+    --logdir /data/ADRD/AD_multiregion/fastq_processing/swarmlogs \
+    --time=2:00:00 \
+    --job-name swarm_filter_cells_ad \
+    --gres=lscratch:5
