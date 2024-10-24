@@ -1,4 +1,4 @@
-# Glia across NDDs
+# Glia across neurodegenerative diseases
 *Analysis of three atlas-scale snRNA-seq datasets from multiple neurodegenerative diseases*
 
 Parkinson's disease (AMP-PD, unpublished)
