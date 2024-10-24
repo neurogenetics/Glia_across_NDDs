@@ -1,8 +1,7 @@
 # Glia across NDDs
-Analysis of three large snRNA-seq datasets from multiple neurodegenerative diseases
+Analysis of three atlas-scale snRNA-seq datasets from multiple neurodegenerative diseases
 
-AD multiregion
+Parkinson's disease (unpublished)
+ALS/FTLD (Pineda et al., 2024)
+Alzheimer's disease (Mathys et al., 2024)
 
-AMP-PD multiregion
-
-ALS/FTD multiregion
