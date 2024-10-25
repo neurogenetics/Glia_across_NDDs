@@ -57,6 +57,9 @@ saveRDS(GPi_merged, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_reg
 M1_merged <- Merge_Seurat_List(M1_list)
 saveRDS(M1_merged, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/pd/M1_merged.rds")
 
+# need to remove this one because they only have 1 cell
+V1_list <- V1_list[-53]
+V1_list <- V1_list[-93]
 V1_merged <- Merge_Seurat_List(V1_list)
 saveRDS(V1_merged, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/pd/V1_merged.rds")
 
