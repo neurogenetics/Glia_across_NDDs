@@ -8,3 +8,4 @@ Cells were filtered using the following metrics, calculated from the **raw CellR
 2. Filter data based on UMIs and features (**all_data_qc_filters.R**)
 3. Apply QC filters to Seurat objects (**apply_qc_filters.R**)
 4. Split each dataset by brain region (**split_by_region.R**)
+5. Processing each region and subsetting out microglia/astrocytes (**processing_regions_subsetting_glia.R**)
