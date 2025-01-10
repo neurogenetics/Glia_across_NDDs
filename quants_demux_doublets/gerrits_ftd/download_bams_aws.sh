@@ -1,3 +1,6 @@
+# run in helix instance
+# configure aws w/ region as us-east-1
+
 FASTQ_LIST=$(cat /data/ADRD/gerrits_ftd_snRNA/fastq_processing/gerrits_srrs.txt)
 
 for FASTQ in ${FASTQ_LIST}
