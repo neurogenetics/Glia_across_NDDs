@@ -5,6 +5,7 @@ FASTQ_LIST=$(cat /data/ADRD/gerrits_ftd_snRNA/fastq_processing/gerrits_srrs.txt)
 for FASTQ in ${FASTQ_LIST}
 do
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts
+mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/bams
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/jobscripts
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/all_fastqs/fastq/$FASTQ
