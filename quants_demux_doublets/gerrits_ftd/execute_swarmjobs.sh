@@ -1,13 +1,11 @@
 # sratoolkit (prefetch + fasterq-dump)
-swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/prefetch_fasterq_dump_swarm.swarm \
-    -g 20 \
+swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/bamtofastq_swarm.swarm \
+    -g 50 \
     -t 10 \
-    -b 2 \
-    --module sratoolkit \
+    --module cellranger \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
-    --time=12:00:00 \
-    --gres=lscratch:500 \
-    --job-name swarm_sra_gerrits
+    --time=24:00:00 \
+    --job-name swarm_bamtofastq_gerrits
 
 # cellranger
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/cellranger_swarm.swarm \
