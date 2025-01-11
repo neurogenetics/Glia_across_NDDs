@@ -1,6 +1,6 @@
-SWARM_FILENAME=/data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/prefetch_fasterq_dump_swarm.swarm
-FASTQ_LIST=$(cat /data/ADRD/gerrits_ftd_snRNA/fastq_processing/gerrits_srrs.txt)
-JOB_SCRIPT=/data/ADRD/gerrits_ftd_snRNA/fastq_processing/jobscripts/prefetch_fasterq_dump_swarm.sh
+SWARM_FILENAME=/data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/bamtofastq_swarm.swarm
+FASTQ_LIST=$(cat /data/ADRD/gerrits_ftd_snRNA/fastq_processing/gerrits_samples.txt)
+JOB_SCRIPT=/data/ADRD/gerrits_ftd_snRNA/fastq_processing/jobscripts/bamtofastq_swarm.sh
 
 for FASTQ in ${FASTQ_LIST}
 do
