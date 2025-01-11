@@ -9,7 +9,7 @@ mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/jobscripts
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/bams
-mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/fastqs/$FASTQ
+mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/fastqs
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/cellranger/outs/$FASTQ
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/cellbender/outs/$FASTQ
 mkdir -p /data/ADRD/gerrits_ftd_snRNA/fastq_processing/demuxafy/outs/$FASTQ
