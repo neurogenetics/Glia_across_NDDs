@@ -1,4 +1,4 @@
-# sratoolkit (prefetch + fasterq-dump)
+# bamtofastq (cellranger)
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/bamtofastq_swarm.swarm \
     -g 50 \
     -t 10 \
