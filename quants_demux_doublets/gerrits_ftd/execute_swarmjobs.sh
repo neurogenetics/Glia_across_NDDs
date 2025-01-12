@@ -42,6 +42,7 @@ swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/doubletdetec
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/scdblfinder_swarm.swarm \
     -g 50 \
     -t 12 \
+    -b 6 \
     --module singularity \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
     --time=2:00:00 \
@@ -51,6 +52,7 @@ swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/scdblfinder_
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/scds_swarm.swarm \
     -g 50 \
     -t 12 \
+    -b 6 \
     --module singularity \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
     --time=2:00:00 \
