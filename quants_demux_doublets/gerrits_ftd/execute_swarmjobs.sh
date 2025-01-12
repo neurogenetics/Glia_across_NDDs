@@ -32,6 +32,7 @@ swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/cellbender_s
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/doubletdetection_swarm.swarm \
     -g 50 \
     -t 12 \
+    -b 2 \
     --module singularity \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
     --time=4:00:00 \
