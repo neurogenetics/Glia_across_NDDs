@@ -21,7 +21,6 @@ swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/cellranger_s
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/cellbender_swarm.swarm \
     -g 100 \
     -t 12 \
-    -b 2 \
     --module cellbender \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
     --time=12:00:00 \
