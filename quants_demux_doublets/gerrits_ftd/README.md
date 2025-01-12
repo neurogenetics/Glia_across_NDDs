@@ -3,11 +3,8 @@
 1. Make output directories (**make_output_dirs.sh**)
 2. Download .bam from SRA using AWS CLI (**download_bams_aws.sh**)
 3. Run bamtofastq w/ CellRanger (**bamtofastq_swarm.sh**)
-
-
-4. Rename fastqs to match CellRanger naming convention (**rename_fastqs.sh**)
-5. Run CellRanger (**run_cellranger_swarm.sh**)
-6. Run CellBender (**run_cellbender_swarm.sh**)
-7. Run Demuxafy doublet detection packages (**run_demuxafy_doubletdetection_swarm.sh**, **run_demuxafy_scdblfinder_swarm.sh**, and **run_demuxafy_scds_swarm.sh**)
-8. Combine results from Demuxafy packages (**demuxafy_combine_results.sh**)
-9. Filter doublets and make/save Seurat objects for each sample (**filter_doublets.R** and **filter_doublets.sh**)
+4. Run CellRanger (**run_cellranger_swarm.sh**)
+5. Run CellBender (**run_cellbender_swarm.sh**)
+6. Run Demuxafy doublet detection packages (**run_demuxafy_doubletdetection_swarm.sh**, **run_demuxafy_scdblfinder_swarm.sh**, and **run_demuxafy_scds_swarm.sh**)
+7. Combine results from Demuxafy packages (**demuxafy_combine_results.sh**)
+8. Filter doublets and make/save Seurat objects for each sample (**filter_doublets.R** and **filter_doublets.sh**)
