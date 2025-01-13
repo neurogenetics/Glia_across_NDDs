@@ -72,6 +72,7 @@ swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/demuxafy_com
 swarm -f /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmscripts/filter_doublets.swarm \
     -g 50 \
     -t 1 \
+    -b 3 \
     --module R \
     --logdir /data/ADRD/gerrits_ftd_snRNA/fastq_processing/swarmlogs \
     --time=2:00:00 \
