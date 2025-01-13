@@ -2,4 +2,4 @@
 
 FASTQ=${1}
 
-Rscript /data/ADRD/amp_pd/transcriptomics/fastq_processing/jobscripts/filter_doublets.R $FASTQ
+Rscript /data/ADRD/gerrits_ftd_snRNA/fastq_processing/jobscripts/filter_doublets.R $FASTQ
