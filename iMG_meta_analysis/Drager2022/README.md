@@ -83,6 +83,21 @@ swarm -f {work_dir}/fastq_processing/swarmscripts/cellranger_swarm.swarm \
 
 ```
 
+
+----- issue still working on -----
+```
+[error] Pipestance failed. Error log at:
+45677938/SC_RNA_COUNTER_CS/SC_MULTI_CORE/MULTI_CHEMISTRY_DETECTOR/DETECT_COUNT_CHEMISTRY/fork0/chnk0-u520491530e/_errors
+
+Log message:
+FASTQ header mismatch detected at line 4 of input files "/vf/users/ADRD/glia_across_NDDs/iMG_meta_analysis/Drager2022/fastq_processing/all_fastqs/fastq/GSM5387652/GSM5387652_S1_R1_001.fastq.gz" and "/vf/users/ADRD/glia_across_NDDs/iMG_meta_analysis/Drager2022/fastq_processing/all_fastqs/fastq/GSM5387652/GSM5387652_S1_R2_001.fastq.gz": file: "/vf/users/ADRD/glia_across_NDDs/iMG_meta_analysis/Drager2022/fastq_processing/all_fastqs/fastq/GSM5387652/GSM5387652_S1_R1_001.fastq.gz", line: 4
+
+```
+
+
+__need to figure out a more proper way to rename files and headers__
+one possibility is using ae-utils::fastq_multx...
+
 ## 3. Ambient RNA
 
 ## 4. Ambient RNA
