@@ -94,9 +94,17 @@ FASTQ header mismatch detected at line 4 of input files "/vf/users/ADRD/glia_acr
 
 ```
 
-
 __need to figure out a more proper way to rename files and headers__
 one possibility is using ae-utils::fastq_multx...
+
+```bash 
+#need to fix location and test out if it works
+module load ea-utils
+fastq-multx -i1 SRR14828083.fastq.gz -i2 SRR14828084.fastq.gz 
+            -o1 GSM5387652_S1_R1_001.fastq.gz -o2 GSM5387652_S1_R2_001.fastq.gz 
+            -n '{id}_{lane}_{read}' 
+
+```
 
 ## 3. Ambient RNA
 
