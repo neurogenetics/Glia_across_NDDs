@@ -1,0 +1,22 @@
+---- COMMAND EXECUTED: ---------------------------------------------------------
+(   /data/ADRD/glia_across_NDDs/iMG_meta_analysis/Drager2022/fastq_processing/jobscripts/prefetch_fasterq_dump_swarm.sh SRR14828085 )
+(   /data/ADRD/glia_across_NDDs/iMG_meta_analysis/Drager2022/fastq_processing/jobscripts/prefetch_fasterq_dump_swarm.sh SRR14828086 )
+--------------------------------------------------------------------------------
+2025-01-14T16:44:23 prefetch.3.1.1: 1) Resolving 'SRR14828085'...
+2025-01-14T16:45:25 prefetch.3.1.1: Current preference is set to retrieve SRA Normalized Format files with full base quality scores
+2025-01-14T16:47:25 prefetch.3.1.1: 1) Downloading 'SRR14828085'...
+2025-01-14T16:47:25 prefetch.3.1.1:  SRA Normalized Format file is being retrieved
+2025-01-14T16:47:25 prefetch.3.1.1:  Downloading via HTTPS...
+2025-01-14T16:51:49 prefetch.3.1.1:  HTTPS download succeed
+2025-01-14T16:52:34 prefetch.3.1.1:  'SRR14828085' is valid: 13060022815 bytes were streamed from 13060016499
+2025-01-14T16:52:34 prefetch.3.1.1: 1) 'SRR14828085' was downloaded successfully
+2025-01-14T16:52:34 prefetch.3.1.1: 'SRR14828085' has 0 dependencies
+2025-01-14T18:45:56 prefetch.3.1.1: 1) Resolving 'SRR14828086'...
+2025-01-14T18:45:59 prefetch.3.1.1: Current preference is set to retrieve SRA Normalized Format files with full base quality scores
+2025-01-14T18:46:59 prefetch.3.1.1: 1) Downloading 'SRR14828086'...
+2025-01-14T18:46:59 prefetch.3.1.1:  SRA Normalized Format file is being retrieved
+2025-01-14T18:46:59 prefetch.3.1.1:  Downloading via HTTPS...
+2025-01-14T19:04:30 prefetch.3.1.1:  HTTPS download succeed
+2025-01-14T19:05:13 prefetch.3.1.1:  'SRR14828086' is valid: 13041955838 bytes were streamed from 13041951289
+2025-01-14T19:05:13 prefetch.3.1.1: 1) 'SRR14828086' was downloaded successfully
+2025-01-14T19:05:13 prefetch.3.1.1: 'SRR14828086' has 0 dependencies
