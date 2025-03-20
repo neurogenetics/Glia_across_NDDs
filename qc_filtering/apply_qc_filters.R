@@ -4,10 +4,12 @@ library(tidyverse)
 PD_meta_filtered <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/PD_metadata_FILTERED.rds")
 ALS_meta_filtered <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/ALSFTD_metadata_FILTERED.rds")
 AD_meta_filtered <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/AD_metadata_FILTERED.rds")
+FTD_meta_filtered <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/FTD_metadata_FILTERED.rds")
 
 PD_cells <- rownames(PD_meta_filtered)
 ALS_cells <- rownames(ALS_meta_filtered)
 AD_cells <- rownames(AD_meta_filtered)
+FTD_cells <- rownames(FTD_meta_filtered)
 
 ########################################
 
@@ -83,5 +85,31 @@ for (fastq in AD_fastq_list){
   cellbender_seurat_filtered <- subset(cellbender_seurat, cells = cells_to_keep_in_sample)
   
   filtered_save_dir <- paste0("/data/ADRD/glia_across_NDDs/combined_data/post_qc_filter_individual_objects/ad/", fastq, "_cellbender_seurat_filtered.rds")
+  saveRDS(cellbender_seurat_filtered, file = filtered_save_dir)
+}
+
+########################################
+
+# Gerrits FTD
+
+FTD_fastq_list <- unique(sub(".*_", "", rownames(FTD_meta_filtered)))
+
+# for testing: fastq <- "C4A"
+
+for (fastq in FTD_fastq_list){
+  cellbender_seurat_path <- paste0("/data/ADRD/gerrits_ftd_snRNA/fastq_processing/final_outs/", fastq)
+  cellbender_seurat_dir <- list.files(path = cellbender_seurat_path, pattern = "_cellbender_seurat.rds", full.names = TRUE)
+  cellbender_seurat <- readRDS(cellbender_seurat_dir)
+  
+  colnames(cellbender_seurat) <- paste0(colnames(cellbender_seurat), "_", fastq)
+  
+  cells_in_sample <- Cells(cellbender_seurat)
+  cells_to_keep_in_sample <- intersect(cells_in_sample, FTD_cells)
+  
+  cellbender_seurat_filtered <- subset(cellbender_seurat, cells = cells_to_keep_in_sample)
+  
+  cellbender_seurat_filtered$sample <- fastq
+  
+  filtered_save_dir <- paste0("/data/ADRD/glia_across_NDDs/combined_data/post_qc_filter_individual_objects/ftd/", fastq, "_cellbender_seurat_filtered.rds")
   saveRDS(cellbender_seurat_filtered, file = filtered_save_dir)
 }
