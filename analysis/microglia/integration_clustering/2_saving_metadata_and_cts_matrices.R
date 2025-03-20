@@ -12,7 +12,7 @@ micro <- readRDS("./combined_data/final_objects/micro_sketched_clustered_project
 micro_celllevel_meta <- micro@meta.data %>%
   dplyr::select(-orig.ident)
 
-saveRDS(micro_celllevel_meta, file = "./analysis/microglia/differential_expression/all_microglia_celllevel_metadata.rds")
+saveRDS(micro_celllevel_meta, file = "./analysis/microglia/all_microglia_celllevel_metadata.rds")
 
 ########################################
 
