@@ -3,6 +3,7 @@ library(tidyverse)
 PD_meta <- readRDS("/data/ADRD/glia_across_NDDs/amp_pd/combined_metadata_prefilter.rds")
 ALS_meta <- readRDS("/data/ADRD/glia_across_NDDs/alsftd/combined_metadata_prefilter.rds")
 AD_meta <- readRDS("/data/ADRD/glia_across_NDDs/ad/combined_metadata_prefilter.rds")
+FTD_meta <- readRDS("/data/ADRD/glia_across_NDDs/gerrits/combined_metadata_prefilter.rds")
 
 ####################
 
@@ -52,6 +53,16 @@ mean(AD_meta$pct.ribo) # 0.6798433
 
 ####################
 
+# Gerrits FTD
+
+t13 <- as.data.frame(quantile(FTD_meta$nCount_RNA, probs = c(0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975, 1)))
+t13 <- rownames_to_column(t13, var = "percentile")
+
+t14 <- as.data.frame(quantile(FTD_meta$nFeature_RNA, probs = c(0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975, 1)))
+t14 <- rownames_to_column(t14, var = "percentile")
+
+####################
+
 counts_all <- left_join(t1, t3, by = "percentile") %>%
   left_join(t5, by = "percentile")
 colnames(counts_all) <- c("percentile", "PD", "ALS", "AD")
@@ -89,6 +100,11 @@ t12 <- as.data.frame(quantile(AD_meta_filtered$nFeature_RNA, probs = c(0.025, 0.
 t12 <- rownames_to_column(t12, var = "percentile")
 
 
+
+FTD_meta_filtered <- FTD_meta %>%
+  filter(nCount_RNA < 8182 & nCount_RNA > 465 & nFeature_RNA > 383.0 & pct.mito < 2 & pct.ribo < 2)
+
+
 counts_all_postfilter <- left_join(t7, t9, by = "percentile") %>%
   left_join(t11, by = "percentile")
 colnames(counts_all_postfilter) <- c("percentile", "PD", "ALS", "AD")
@@ -105,39 +121,4 @@ colnames(features_all_postfilter) <- c("percentile", "PD", "ALS", "AD")
 saveRDS(PD_meta_filtered, file = "/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/PD_metadata_FILTERED.rds")
 saveRDS(ALS_meta_filtered, file = "/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/ALSFTD_metadata_FILTERED.rds")
 saveRDS(AD_meta_filtered, file = "/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/AD_metadata_FILTERED.rds")
-
-
-####################
-
-# visualizing
-
-PD_meta_filtered$group <- "PD"
-ALS_meta_filtered$group <- "ALS"
-AD_meta_filtered$group <- "AD"
-
-PD_fig <- PD_meta_filtered[c("nCount_RNA", "nFeature_RNA", "group")]
-ALS_fig <- ALS_meta_filtered[c("nCount_RNA", "nFeature_RNA", "group")]
-AD_fig <- AD_meta_filtered[c("nCount_RNA", "nFeature_RNA", "group")]
-
-
-combined_counts <- as.data.frame(rbind(PD_fig, ALS_fig, AD_fig))
-
-
-median_counts <- combined_counts %>% 
-  group_by(group) %>% 
-  summarize(median = median(nCount_RNA)) 
-
-median_features <- combined_counts %>% 
-  group_by(group) %>% 
-  summarize(median = median(nFeature_RNA)) 
-
-
-ggplot(combined_counts, aes(x = nCount_RNA, colour = group)) +
-  geom_density(alpha = 0, size = 1) +
-  theme_bw() +
-  geom_vline(data = median_counts, aes(xintercept = median, color = group), linetype = "dashed", size = 1)
-
-ggplot(combined_counts, aes(x = nFeature_RNA, colour = group)) +
-  geom_density(alpha = 0, size = 1) +
-  theme_bw() +
-  geom_vline(data = median_features, aes(xintercept = median, color = group), linetype = "dashed", size = 1)
+saveRDS(FTD_meta_filtered, file = "/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/FTD_metadata_FILTERED.rds")
