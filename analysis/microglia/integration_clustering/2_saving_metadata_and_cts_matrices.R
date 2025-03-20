@@ -10,7 +10,20 @@ setwd("/data/ADRD/glia_across_NDDs")
 micro <- readRDS("./combined_data/final_objects/micro_sketched_clustered_projected_NO_ctsfilter_res_0.25.rds")
 
 micro_celllevel_meta <- micro@meta.data %>%
-  dplyr::select(-orig.ident)
+  dplyr::select(-orig.ident) %>%
+  dplyr::select(-dataset_region)
+
+# edit region names in metadata
+micro_celllevel_meta <- micro_celllevel_meta %>%
+  mutate(region = case_when(
+    region == "PFC" ~ "FC/PFC",
+    region == "FC" ~ "FC/PFC",
+    region == "TC" ~ "TC/MTG",
+    region == "MTG" ~ "TC/MTG",
+    region == "OC" ~ "OC/V1", 
+    region == "V1" ~ "OC/V1", 
+    region == "HC" ~ "HIP",
+    TRUE ~ region))
 
 saveRDS(micro_celllevel_meta, file = "./analysis/microglia/all_microglia_celllevel_metadata.rds")
 
