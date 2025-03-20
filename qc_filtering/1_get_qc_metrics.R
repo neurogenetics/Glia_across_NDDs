@@ -40,12 +40,14 @@ saveRDS(combined_metadata_filtered, file = "/data/ADRD/glia_across_NDDs/amp_pd/c
 
 ########################################
 
-# ALS/FTD
+# ALS/FTLD
 
 fastq_list <- read.csv(file = "/data/ADRD/ALSFTD_multiregion/fastq_processing/cleaned_SRRs.txt", sep = "\t", header = F)
 fastq_list <- fastq_list$V1
 
 # loop through objects & pull metadata
+
+# for testing: fastq <- "SRR27882162"
 
 combined_metadata <- data.frame()
 
@@ -55,6 +57,7 @@ for (fastq in fastq_list){
   cellranger_seurat <- readRDS(cellranger_seurat_dir)
   
   meta <- cellranger_seurat@meta.data[, c("sample", "region", "nCount_RNA", "nFeature_RNA", "pct.mito", "pct.ribo")]
+  meta$fastq <- fastq
   
   combined_metadata <- rbind(combined_metadata, meta)
 }
@@ -83,3 +86,26 @@ for (fastq in fastq_list){
 }
 
 saveRDS(combined_metadata, file = "/data/ADRD/glia_across_NDDs/ad/combined_metadata_prefilter.rds")
+
+########################################
+
+# gerrits FTD
+
+fastq_list <- read.csv(file = "/data/ADRD/gerrits_ftd_snRNA/fastq_processing/gerrits_samples.txt", sep = "\t", header = F)
+fastq_list <- fastq_list$V1
+
+combined_metadata <- data.frame()
+
+for (fastq in fastq_list){
+  cellranger_seurat_path <- paste0("/data/ADRD/gerrits_ftd_snRNA/fastq_processing/final_outs/", fastq)
+  cellranger_seurat_dir <- list.files(path = cellranger_seurat_path, pattern = "_cellranger_seurat.rds", full.names = TRUE)
+  cellranger_seurat <- readRDS(cellranger_seurat_dir)
+  
+  colnames(cellranger_seurat) <- paste0(colnames(cellranger_seurat), "_", fastq)
+  
+  meta <- cellranger_seurat@meta.data[, c("nCount_RNA", "nFeature_RNA", "pct.mito", "pct.ribo")]
+  
+  combined_metadata <- rbind(combined_metadata, meta)
+}
+
+saveRDS(combined_metadata, file = "/data/ADRD/glia_across_NDDs/gerrits/combined_metadata_prefilter.rds")
