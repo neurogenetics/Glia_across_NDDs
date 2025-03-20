@@ -335,3 +335,106 @@ AD_astro_filtered <- subset(AD_astro_filtered, subset = donor_region %in% AD_don
 
 saveRDS(AD_astro_markers, file = "./processed_celltypes_by_dataset/markers_from_filtering/AD_astro_markers_prefilter.rds")
 saveRDS(AD_astro_filtered, file = "./processed_celltypes_by_dataset/AD_astrocytes_allregions_filtered.rds")
+
+########################################
+########################################
+########################################
+
+# FTD
+
+##################
+
+# functions for processing
+
+preprocess_ftd_subsets_1 <- function(seurat_obj){
+  seurat_obj[["RNA"]] <- JoinLayers(seurat_obj[["RNA"]])
+  seurat_obj <- FindVariableFeatures(seurat_obj, nfeatures = 2000)
+  seurat_obj <- ScaleData(seurat_obj, vars.to.regress = c("nCount_RNA", "pct.mito"))
+  seurat_obj <- RunPCA(seurat_obj)
+  seurat_obj <- RunHarmony(object = seurat_obj, reduction = "pca", group.by.vars = c("Donor"), 
+                           reduction.save = 'harmony', plot_convergence = T, lambda = NULL)
+  
+  return(seurat_obj)
+}
+
+preprocess_ftd_subsets_2 <- function(seurat_obj, ndims, res, cluster_name){
+  seurat_obj <- FindNeighbors(seurat_obj, reduction = "harmony", dims = 1:ndims)
+  seurat_obj <- RunUMAP(seurat_obj, reduction = "harmony", dims = 1:ndims, reduction.name = "umap_harmony")
+  seurat_obj <- FindClusters(seurat_obj, resolution = res, cluster.name = cluster_name)
+  
+  return(seurat_obj)
+}
+
+##################
+
+# microglia
+
+FTD_FC_micro <- readRDS("./subset_celltypes_by_region/ftd/FC_microglia_raw.rds")
+FTD_TC_micro <- readRDS("./subset_celltypes_by_region/ftd/TC_microglia_raw.rds")
+FTD_OP_micro <- readRDS("./subset_celltypes_by_region/ftd/OC_microglia_raw.rds")
+
+
+FTD_micro_list <- c(FTD_FC_micro, FTD_TC_micro, FTD_OP_micro)
+FTD_micro_merged <- Merge_Seurat_List(FTD_micro_list, merge.data = T)
+FTD_micro_merged <- preprocess_ftd_subsets_1(FTD_micro_merged)
+ElbowPlot(FTD_micro_merged, ndims = 50, reduction = "harmony")
+FTD_micro_merged <- preprocess_ftd_subsets_2(FTD_micro_merged, ndims = 10, res = 0.1, cluster_name = "harmony_microglia_clusters")
+
+# check clusters and remove any that are not microglia
+
+Idents(FTD_micro_merged) <- "harmony_microglia_clusters"
+DimPlot(FTD_micro_merged, reduction = "umap_harmony", label = T, split.by = "region") 
+FeaturePlot(FTD_micro_merged, features = c("P2RY12", "MRC1", "MOG", "CD3E"), label = T)
+FTD_micro_markers <- FindAllMarkers(FTD_micro_merged, logfc.threshold = 0.5, min.pct = 0.5, only.pos = T)
+
+FTD_micro_filtered <- subset(FTD_micro_merged, idents = c("0", "1", "3"))
+
+# filter out donor x region w/ <50 cells
+
+FTD_micro_donor_counts <- as.data.frame(table(FTD_micro_filtered$Donor, FTD_micro_filtered$Region))
+FTD_micro_donor_counts <- FTD_micro_donor_counts %>%
+  arrange(Freq)
+FTD_micro_donor_counts$donor_region <- paste0(FTD_micro_donor_counts$Var1, "_", FTD_micro_donor_counts$Var2)
+FTD_donor_regions_to_keep <- FTD_micro_donor_counts$donor_region[13:nrow(FTD_micro_donor_counts)]
+
+FTD_micro_filtered$donor_region <- paste0(FTD_micro_filtered$Donor, "_", FTD_micro_filtered$Region)
+FTD_micro_filtered <- subset(FTD_micro_filtered, subset = donor_region %in% FTD_donor_regions_to_keep)
+
+saveRDS(FTD_micro_markers, file = "./processed_celltypes_by_dataset/markers_from_filtering/FTD_micro_markers_prefilter.rds")
+saveRDS(FTD_micro_filtered, file = "./processed_celltypes_by_dataset/FTD_microglia_allregions_filtered.rds")
+
+##################
+
+# astrocytes
+
+FTD_FC_astro <- readRDS("./subset_celltypes_by_region/ftd/FC_astrocytes_raw.rds")
+FTD_TC_astro <- readRDS("./subset_celltypes_by_region/ftd/TC_astrocytes_raw.rds")
+FTD_OP_astro <- readRDS("./subset_celltypes_by_region/ftd/OC_astrocytes_raw.rds")
+
+
+FTD_astro_list <- c(FTD_FC_astro, FTD_TC_astro, FTD_OP_astro)
+FTD_astro_merged <- Merge_Seurat_List(FTD_astro_list, merge.data = T)
+FTD_astro_merged <- preprocess_ftd_subsets_1(FTD_astro_merged)
+ElbowPlot(FTD_astro_merged, ndims = 50, reduction = "harmony")
+FTD_astro_merged <- preprocess_ftd_subsets_2(FTD_astro_merged, ndims = 10, res = 0.1, cluster_name = "harmony_astrocytes_clusters")
+
+# check clusters and remove any that are not astrocytes
+
+Idents(FTD_astro_merged) <- "harmony_astrocytes_clusters"
+DimPlot(FTD_astro_merged, reduction = "umap_harmony", label = T, split.by = "Group")
+FeaturePlot(FTD_astro_merged, features = c("P2RY12", "MRC1", "MOG", "CD3E"), label = T)
+FTD_astro_markers <- FindAllMarkers(FTD_astro_merged, logfc.threshold = 0.5, min.pct = 0.5, only.pos = T)
+
+# filter out donor x region w/ <50 cells
+
+FTD_astro_donor_counts <- as.data.frame(table(FTD_astro_merged$Donor, FTD_astro_merged$Region))
+FTD_astro_donor_counts <- FTD_astro_donor_counts %>%
+  arrange(Freq)
+FTD_astro_donor_counts$donor_region <- paste0(FTD_astro_donor_counts$Var1, "_", FTD_astro_donor_counts$Var2)
+FTD_donor_regions_to_keep <- FTD_astro_donor_counts$donor_region[13:nrow(FTD_astro_donor_counts)]
+
+FTD_astro_merged$donor_region <- paste0(FTD_astro_merged$Donor, "_", FTD_astro_merged$Region)
+FTD_astro_filtered <- subset(FTD_astro_merged, subset = donor_region %in% FTD_donor_regions_to_keep)
+
+saveRDS(FTD_astro_markers, file = "./processed_celltypes_by_dataset/markers_from_filtering/FTD_astro_markers_prefilter.rds")
+saveRDS(FTD_astro_filtered, file = "./processed_celltypes_by_dataset/FTD_astrocytes_allregions_filtered.rds")
