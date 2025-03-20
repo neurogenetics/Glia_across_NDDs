@@ -185,3 +185,46 @@ MTG_merged <- Merge_Seurat_List(MTG_list)
 saveRDS(MTG_merged, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ad/MTG_merged.rds")
 
 rm(list = ls())
+
+########################################
+
+# gerrits FTD
+
+FTD_meta_filtered <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/post_filter_metadata/FTD_metadata_FILTERED.rds")
+FTD_fastq_list <- unique(sub(".*_", "", rownames(FTD_meta_filtered)))
+
+FTD_seurat_list <- list()
+
+# fastq <- "C4A"
+
+for (fastq in FTD_fastq_list){
+  cellbender_seurat_dir <- paste0("/data/ADRD/glia_across_NDDs/combined_data/post_qc_filter_individual_objects/ftd/", fastq, "_cellbender_seurat_filtered.rds")
+  cellbender_seurat <- readRDS(cellbender_seurat_dir)
+  
+  FTD_seurat_list[[fastq]] <- cellbender_seurat
+}
+
+FTD_seurat_merged <- Merge_Seurat_List(FTD_seurat_list)
+
+FTD_basic_meta <- read.csv("/data/ADRD/glia_across_NDDs/metadata/gerrits_ftd_basic_meta.csv", header = T)
+FTD_basic_meta <- FTD_basic_meta %>%
+  rename(sample = Sample)
+FTD_meta <- FTD_seurat_merged@meta.data
+FTD_meta$barcodes <- rownames(FTD_meta)
+
+FTD_meta_merged <- FTD_meta %>%
+  left_join(FTD_basic_meta, by = "sample") %>%
+  column_to_rownames(var = "barcodes")
+
+identical(rownames(FTD_meta), rownames(FTD_meta_merged))
+
+FTD_seurat_merged@meta.data <- FTD_meta_merged
+
+
+FTD_FC <- subset(FTD_seurat_merged, subset = Region == "FC")
+FTD_OC <- subset(FTD_seurat_merged, subset = Region == "OC")
+FTD_TC <- subset(FTD_seurat_merged, subset = Region == "TC")
+
+saveRDS(FTD_FC, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/FC_merged.rds")
+saveRDS(FTD_OC, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/OC_merged.rds")
+saveRDS(FTD_TC, file = "/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/TC_merged.rds")
