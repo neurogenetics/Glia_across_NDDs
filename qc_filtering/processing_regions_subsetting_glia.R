@@ -384,3 +384,94 @@ MTG_pcs <- as.data.frame(MTG_merged@reductions$harmony@stdev)
 MTG_varfeats <- as.data.frame(VariableFeatures(MTG_merged))
 saveRDS(MTG_pcs, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ad/MTG_pcs.rds")
 saveRDS(MTG_varfeats, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ad/MTG_varfeats.rds")
+
+########################################
+########################################
+########################################
+
+#######
+# FTD #
+####### 
+
+# functions
+
+preprocess_ftd_step_1 <- function(seurat_obj){
+  seurat_obj[["RNA"]] <- JoinLayers(seurat_obj[["RNA"]])
+  seurat_obj$pct.mito <- PercentageFeatureSet(seurat_obj, pattern = "^MT")
+  seurat_obj <- NormalizeData(seurat_obj, normalization.method = "LogNormalize", scale.factor = 10000)
+  seurat_obj <- FindVariableFeatures(seurat_obj, nfeatures = 2000)
+  seurat_obj <- ScaleData(seurat_obj, vars.to.regress = c("nCount_RNA", "pct.mito"))
+  seurat_obj <- RunPCA(seurat_obj)
+  seurat_obj <- RunHarmony(object = seurat_obj, reduction = "pca", group.by.vars = c("Donor"),
+                           reduction.save = 'harmony', plot_convergence = T, lambda = NULL)
+  
+  return(seurat_obj)
+}
+
+preprocess_ftd_step_2 <- function(seurat_obj, ndims, res){
+  seurat_obj <- FindNeighbors(seurat_obj, reduction = "harmony", dims = 1:ndims)
+  seurat_obj <- RunUMAP(seurat_obj, reduction = "harmony", dims = 1:ndims, reduction.name = "umap_harmony")
+  seurat_obj <- FindClusters(seurat_obj, resolution = res, cluster.name = "harmony_clusters")
+  
+  return(seurat_obj)
+}
+
+######
+
+# running by region -- preprocess, check clusters, subset micro/astro, save
+
+FC_merged <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/FC_merged.rds")
+FC_merged <- preprocess_ftd_step_1(FC_merged)
+ElbowPlot(FC_merged, ndims = 50, reduction = "harmony")
+FC_merged <- preprocess_ftd_step_2(FC_merged, ndims = 15, res = 0.1)
+Idents(FC_merged) <- "harmony_clusters"
+DimPlot(FC_merged, reduction = "umap_harmony", label = T) 
+FeaturePlot(FC_merged, features = c("RBFOX3", "SLC17A7", "GAD1", "P2RY12", "AQP4", "MOG"), ncol = 3, label = T)
+FC_merged$region <- "FC"
+FC_microglia <- subset(FC_merged, idents = "1")
+FC_astrocytes <- subset(FC_merged, idents = c("0", "2"))
+FC_pcs <- as.data.frame(FC_merged@reductions$harmony@stdev)
+FC_varfeats <- as.data.frame(VariableFeatures(FC_merged))
+saveRDS(FC_pcs, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/FC_pcs.rds")
+saveRDS(FC_varfeats, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/FC_varfeats.rds")
+saveRDS(FC_merged, "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/ftd/FC_all_preprocessed.rds")
+saveRDS(FC_microglia, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/FC_microglia_raw.rds")
+saveRDS(FC_astrocytes, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/FC_astrocytes_raw.rds")
+
+
+OC_merged <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/OC_merged.rds")
+OC_merged <- preprocess_ftd_step_1(OC_merged)
+ElbowPlot(OC_merged, ndims = 50, reduction = "harmony")
+OC_merged <- preprocess_ftd_step_2(OC_merged, ndims = 20, res = 0.1)
+Idents(OC_merged) <- "harmony_clusters"
+DimPlot(OC_merged, reduction = "umap_harmony", label = T) 
+FeaturePlot(OC_merged, features = c("RBFOX3", "SLC17A7", "GAD1", "P2RY12", "AQP4", "MOG"), ncol = 3, label = T)
+OC_merged$region <- "OC"
+OC_microglia <- subset(OC_merged, idents = c("1", "7"))
+OC_astrocytes <- subset(OC_merged, idents = c("0", "2"))
+OC_pcs <- as.data.frame(OC_merged@reductions$harmony@stdev)
+OC_varfeats <- as.data.frame(VariableFeatures(OC_merged))
+saveRDS(OC_pcs, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/OC_pcs.rds")
+saveRDS(OC_varfeats, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/OC_varfeats.rds")
+saveRDS(OC_merged, "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/ftd/OC_all_preprocessed.rds")
+saveRDS(OC_microglia, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/OC_microglia_raw.rds")
+saveRDS(OC_astrocytes, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/OC_astrocytes_raw.rds")
+
+
+TC_merged <- readRDS("/data/ADRD/glia_across_NDDs/combined_data/merged_regions/ftd/TC_merged.rds")
+TC_merged <- preprocess_ftd_step_1(TC_merged)
+ElbowPlot(TC_merged, ndims = 50, reduction = "harmony")
+TC_merged <- preprocess_ftd_step_2(TC_merged, ndims = 20, res = 0.1)
+Idents(TC_merged) <- "harmony_clusters"
+DimPlot(TC_merged, reduction = "umap_harmony", label = T) 
+FeaturePlot(TC_merged, features = c("RBFOX3", "SLC17A7", "GAD1", "P2RY12", "AQP4", "MOG"), ncol = 3, label = T)
+TC_merged$region <- "TC"
+TC_microglia <- subset(TC_merged, idents = c("0", "4"))
+TC_astrocytes <- subset(TC_merged, idents = c("1", "2"))
+TC_pcs <- as.data.frame(TC_merged@reductions$harmony@stdev)
+TC_varfeats <- as.data.frame(VariableFeatures(TC_merged))
+saveRDS(TC_pcs, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/TC_pcs.rds")
+saveRDS(TC_varfeats, file = "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/varfeats_umapdims_from_processing/ftd/TC_varfeats.rds")
+saveRDS(TC_merged, "/data/ADRD/glia_across_NDDs/combined_data/processed_regions/ftd/TC_all_preprocessed.rds")
+saveRDS(TC_microglia, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/TC_microglia_raw.rds")
+saveRDS(TC_astrocytes, "/data/ADRD/glia_across_NDDs/combined_data/subset_celltypes_by_region/ftd/TC_astrocytes_raw.rds")
