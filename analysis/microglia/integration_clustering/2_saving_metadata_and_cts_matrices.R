@@ -45,3 +45,27 @@ saveRDS(PD_counts, file = "./analysis/microglia/differential_expression/single_c
 saveRDS(AD_counts, file = "./analysis/microglia/differential_expression/single_cell_cts_matrices/Mathys_microglia_sc_cts.rds")
 saveRDS(ALS_counts, file = "./analysis/microglia/differential_expression/single_cell_cts_matrices/Pineda_microglia_sc_cts.rds")
 saveRDS(FTD_counts, file = "./analysis/microglia/differential_expression/single_cell_cts_matrices/Gerrits_microglia_sc_cts.rds")
+
+########################################
+
+# pseudobulk counts matrices donor x region
+
+AMPPD_cts <- readRDS("./analysis/microglia/differential_expression/single_cell_cts_matrices/AMP-PD_microglia_sc_cts.rds")
+Gerrits_cts <- readRDS("./analysis/microglia/differential_expression/single_cell_cts_matrices/Gerrits_microglia_sc_cts.rds")
+Pineda_cts <- readRDS("./analysis/microglia/differential_expression/single_cell_cts_matrices/Pineda_microglia_sc_cts.rds")
+Mathys_cts <- readRDS("./analysis/microglia/differential_expression/single_cell_cts_matrices/Mathys_microglia_sc_cts.rds")
+
+cts_merged <- cbind(AMPPD_cts, Gerrits_cts, Pineda_cts, Mathys_cts)
+
+celllevel_meta <- readRDS("./analysis/microglia/all_microglia_celllevel_metadata_ANNOTATED.rds")
+celllevel_meta$donor_region <- paste0(celllevel_meta$donor, "_", celllevel_meta$region)
+
+
+pb_cts <- aggregate(as.matrix(t(cts_merged)), by = list(celllevel_meta$donor_region), FUN = sum)
+colnames(pb_cts)[1] <- "donor_region"
+pb_cts <- pb_cts %>%
+  column_to_rownames(var = "donor_region") %>%
+  t(.) %>%
+  as.data.frame(.)
+
+saveRDS(pb_cts, file = "./analysis/microglia/differential_expression/cts_pseudobulked_donor_x_region.rds")
