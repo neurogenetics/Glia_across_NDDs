@@ -1,5 +1,7 @@
 # Glia across neurodegenerative diseases
 *Analysis of four atlas-scale snRNA-seq datasets from multiple neurodegenerative diseases*
+<img width="3000" height="2100" alt="GliaNDD_GraphicalAbstract (2)" src="https://github.com/user-attachments/assets/60f7ed5b-04b3-42ad-b9d9-0c6b03a7b3da" />
+
 ## Discovery datasets
 ALS/FTLD (Pineda et al., 2024) \
 Alzheimer's disease (Mathys et al., 2024)\
