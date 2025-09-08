@@ -1,0 +1,13 @@
+.DS_Store
+*/.DS_Store
+*.out
+*.err
+*/data/*
+*/results/*
+*/result/*
+*/quants/*
+*/plots/*
+*/plot/*
+*/figure/*
+*/figures/*
+
